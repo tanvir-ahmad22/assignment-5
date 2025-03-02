@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevBoard</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-primary">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-left">
+          <img src="assets/logo.png" alt="Logo" class="logo" />
+          <h1 class="brand-name">
+            Dev<span class="brand-name-highlight">Board</span>
+          </h1>
+        </div>
+        <div class="navbar-right">
+          <div class="notification">
+            <img
+              src="assets/checkbox.png"
+              alt="Notification Icon"
+              class="notification-icon"
+            />
+            <span class="notification-count" id="notificationCount">23</span>
+          </div>
+          <img
+            src="assets/theme-btn.png"
+            alt="RGB Icon"
+            id="colorChanger"
+            class="theme-btn"
+          />
+        </div>
+      </div>
+    </nav>
+
+    <div class="content-container">
+      <!-- Left section -->
+      <section id="left-section">
+        <div class="summary">
+          <div class="count-card bg-primary">
+            <div class="checkbox-icon bg-white">
+              <img src="assets/checkbox.png" alt="checkbox" />
+            </div>
+            <div class="summary-content">
+              <p class="card-title">Task Assigned</p>
+              <p class="card-number" id="countDisplay">6</p>
+            </div>
+          </div>
+          <div
+            class="highlight-card"
+            onclick="window.location.href='templet.html'"
+          >
+            <img src="assets/board.png" alt="board" />
+            <p class="font-bold">Discover Something New Today!</p>
+          </div>
+
+          <div class="card-live-date bg-primary">
+            <div class="card-img">
+              <img src="assets/calender.png" alt="calender" />
+            </div>
+            <div class="card-content">
+              <p class="card-day" id="liveDay"></p>
+              <p class="card-date" id="liveDate"></p>
+            </div>
+          </div>
+        </div>
+        <!--  task-card -->
+        <div class="task-cards">
+          <div class="task-card bg-primary">
+            <p class="task-category bg-white">ShopEase</p>
+            <h4 class="task-title">Fix Mobile Button Issue</h4>
+            <p class="task-desc bg-white" id="taskDesc1">
+              Debug using Chrome DevTools, check for overlapping elements and
+              improve user interface responsiveness. Make sure the button size
+              is correct and no elements are hidden.
+              <span class="read-more">...</span>
+            </p>
+            <div class="task-deadline">
+              <p>
+                Deadline <br />
+                <span class="deadline-date" id="liveDeadline1"
+                  >Mar 25, 2025</span
+                >
+              </p>
+              <button class="status-completed" id="completeBtn1">
+                Completed
+              </button>
+            </div>
+          </div>
+
+          <div class="task-card bg-primary">
+            <p class="task-category bg-white">CloudSync</p>
+            <h4 class="task-title">Add Dark Mode</h4>
+            <p class="task-desc bg-white" id="taskDesc2">
+              Store the user's preference in localStorage, update CSS variables
+              dynamically based on the mode selected.
+              <span class="read-more">...</span>
+            </p>
+            <div class="task-deadline">
+              <p>
+                Deadline <br />
+                <span class="deadline-date" id="liveDeadline2"
+                  >Mar 26, 2025</span
+                >
+              </p>
+              <button class="status-completed" id="completeBtn2">
+                Completed
+              </button>
+            </div>
+          </div>
+
+          <div class="task-card bg-primary">
+            <p class="task-category bg-white">SwiftPay</p>
+            <h4 class="task-title">Optimize Home pagee</h4>
+            <p class="task-desc bg-white" id="taskDesc3">
+              To optimize your home page, make it fast, clear, and easy to
+              navigate. Use good images, strong headlines, and show what makes
+              your site special. Make sure it looks good on phones too, and
+              guide visitors with clear buttons.
+              <span class="read-more">...</span>
+            </p>
+            <div class="task-deadline">
+              <p>
+                Deadline <br />
+                <span class="deadline-date" id="liveDeadline3"
+                  >Mar 27, 2025</span
+                >
+              </p>
+              <button class="status-completed" id="completeBtn3">
+                Completed
+              </button>
+            </div>
+          </div>
+
+          <div class="task-card bg-primary">
+            <p class="task-category bg-white">Meta</p>
+            <h4 class="task-title">Add new emoji 🤲</h4>
+            <p class="task-desc bg-white" id="taskDesc4">
+              This emoji represents a gesture of open hands, commonly associated
+              with giving, receiving, or expressing gratitude. It can also
+              symbolize prayer, hope, or a plea for help.
+              <span class="read-more">...</span>
+            </p>
+            <div class="task-deadline">
+              <p>
+                Deadline <br />
+                <span class="deadline-date" id="liveDeadline4"
+                  >Mar 28, 2025</span
+                >
+              </p>
+              <button class="status-completed" id="completeBtn4">
+                Completed
+              </button>
+            </div>
+          </div>
+
+          <div class="task-card bg-primary">
+            <p class="task-category bg-white">Google LLC</p>
+            <h4 class="task-title">Integrate OpenAI API</h4>
+            <p class="task-desc bg-white" id="taskDesc5">
+              ntegrating the OpenAI API allows you to use AI models for tasks
+              like text generation, language understanding, and more, directly
+              in your applications.
+              <span class="read-more">...</span>
+            </p>
+            <div class="task-deadline">
+              <p>
+                Deadline <br />
+                <span class="deadline-date" id="liveDeadline5"
+                  >Mar 29, 2025</span
+                >
+              </p>
+              <button class="status-completed" id="completeBtn5">
+                Completed
+              </button>
+            </div>
+          </div>
+
+          <div class="task-card bg-primary">
+            <p class="task-category bg-white">Glassdoar</p>
+            <h4 class="task-title">Improve Job searching</h4>
+            <p class="task-desc bg-white" id="taskDesc6">
+              Improving job searching involves using better tools, networking,
+              and customizing resumes to match job descriptions, increasing the
+              chances of finding the right opportunities.
+              <span class="read-more">...</span>
+            </p>
+            <div class="task-deadline">
+              <p>
+                Deadline <br />
+                <span class="deadline-date" id="liveDeadline6"
+                  >Mar 30, 2025</span
+                >
+              </p>
+              <button class="status-completed" id="completeBtn6">
+                Completed
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Section -->
+      <section id="right-section">
+        <p class="activity-log-title">
+          <img src="assets/activity.png" alt="" /> Activity Log
+        </p>
+        <button class="clear-history-btn">Clear History</button>
+        <div id="activityLog"></div>
+      </section>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
