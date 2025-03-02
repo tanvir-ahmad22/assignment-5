@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Color Changer
+  // Color Changer (Same as before)
   const colorChanger = document.getElementById("colorChanger");
   const colors = ["#ffcccb", "#a0e7e5", "#b4f8c8", "#f3f8ff", "#f7b267"];
   let colorIndex = 0;
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     colorIndex = (colorIndex + 1) % colors.length;
   });
 
-  // Live Date
+  // Live Date (Same as before)
   const liveDayElement = document.getElementById("liveDay");
   const liveDateElement = document.getElementById("liveDate");
 
@@ -28,16 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   updateLiveDate();
 
-  // Task Cards
+  // Task Cards (No Loops)
   let buttons = document.querySelectorAll(".status-completed");
-  let clearHistoryButton = document.querySelector(".clear-history-btn");
 
   if (buttons.length === 0) {
     console.error("No '.status-completed' buttons found.");
     return;
   }
 
-  // Clear History button
+  // Clear History button (Same as before)
+  let clearHistoryButton = document.querySelector(".clear-history-btn");
   if (clearHistoryButton) {
     clearHistoryButton.addEventListener("click", function () {
       let activityLog = document.getElementById("activityLog");
@@ -47,83 +47,116 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  let tasksCompleted = new Array(buttons.length).fill(false);
+  // Helper function (No Loops)
+  function taskComplete(button) {
+    // --- Task Completion Logic ---
+    alert("Task Completed!");
 
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function () {
-      alert("Task Completed Successfully!");
+    let now = new Date();
+    let timeString = now.toLocaleTimeString();
 
-      let now = new Date();
-      let hours = now.getHours();
-      let minutes = now.getMinutes();
-      let seconds = now.getSeconds();
-      let ampm = hours >= 12 ? "PM" : "AM";
-      hours = hours % 12 || 12;
-      let timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+    let taskTitleElement = button
+      .closest(".task-card")
+      .querySelector(".task-title");
+    if (!taskTitleElement) return console.error("No '.task-title' found.");
 
-      let taskCard = buttons[i].closest(".task-card");
-      let taskTitleElement = taskCard.querySelector(".task-title");
+    let taskTitle = taskTitleElement.innerText;
 
-      if (!taskTitleElement) {
-        console.error("No '.task-title' found.");
-        return;
-      }
+    let activityLog = document.getElementById("activityLog");
+    if (!activityLog) return console.error("No 'activityLog' found.");
 
-      let taskTitle = taskTitleElement.innerText;
-      let activityLog = document.getElementById("activityLog");
+    let newLog = document.createElement("p");
+    newLog.innerText = `Completed "${taskTitle}" at ${timeString}`;
+    newLog.style.cssText =
+      "background-color:#f0f0f0; padding:10px; border-radius:10px; margin-bottom:5px; text-align:left;";
+    activityLog.appendChild(newLog);
 
-      if (!activityLog) {
-        console.error("No 'activityLog' found.");
-        return;
-      }
+    let countDisplay = document.getElementById("countDisplay");
+    if (countDisplay) {
+      let currentCount = parseInt(countDisplay.innerText);
+      if (currentCount > 0) countDisplay.innerText = currentCount - 1;
+    } else {
+      console.error("No 'countDisplay' found.");
+    }
 
-      let newLog = document.createElement("p");
-      newLog.innerText = `You completed "${taskTitle}" (Button: ${buttons[i].id}) at ${timeString}`;
+    let notificationCount = document.getElementById("notificationCount");
+    if (notificationCount) {
+      let currentNotification = parseInt(notificationCount.innerText);
+      notificationCount.innerText = currentNotification + 1;
+    } else {
+      console.error("No 'notificationCount' found.");
+    }
 
-      // Add card-like styling
-      newLog.style.backgroundColor = "#f0f0f0";
-      newLog.style.padding = "10px";
-      newLog.style.borderRadius = "10px";
-      newLog.style.marginBottom = "5px";
-      newLog.style.textAlign = "left";
+    button.innerText = "Completed";
+    button.disabled = true;
+    button.style.backgroundColor = "#aaa";
+    button.style.cursor = "not-allowed";
+  }
 
-      activityLog.appendChild(newLog);
+  //All complete checker function (NO Loops)
+  function checkAllTasksCompleted() {
+    let buttons = document.querySelectorAll(".status-completed"); //Re-query the buttons
+    if (
+      (buttons[0] ? buttons[0].innerText === "Completed" : true) &&
+      (buttons[1] ? buttons[1].innerText === "Completed" : true) &&
+      (buttons[2] ? buttons[2].innerText === "Completed" : true) &&
+      (buttons[3] ? buttons[3].innerText === "Completed" : true) &&
+      (buttons[4] ? buttons[4].innerText === "Completed" : true) &&
+      (buttons[5] ? buttons[5].innerText === "Completed" : true)
+    ) {
+      alert("All tasks done!");
+    }
+  }
 
-      // Task count (countDisplay) decrement
-      let countDisplay = document.getElementById("countDisplay");
-
-      if (countDisplay) {
-        let currentCount = parseInt(countDisplay.innerText);
-        if (currentCount > 0) {
-          countDisplay.innerText = currentCount - 1;
-        }
-      } else {
-        console.error("No 'countDisplay' found.");
-      }
-
-      let notificationCount = document.getElementById("notificationCount");
-
-      if (notificationCount) {
-        let currentNotification = parseInt(notificationCount.innerText);
-        notificationCount.innerText = currentNotification + 1;
-      } else {
-        console.error("No 'notificationCount' found.");
-      }
-
-      buttons[i].innerText = "Completed";
-      buttons[i].disabled = true;
-      buttons[i].style.backgroundColor = "#aaa";
-      buttons[i].style.cursor = "not-allowed";
-
-      tasksCompleted[i] = true;
-
-      if (tasksCompleted.every((completed) => completed)) {
-        alert("Congratulations! All tasks completed!");
-      }
+  // Task 1
+  if (buttons[0]) {
+    buttons[0].addEventListener("click", function () {
+      taskComplete(buttons[0]);
+      checkAllTasksCompleted();
     });
   }
 
-  // Feature for Task Descriptions
+  // Task 2
+  if (buttons[1]) {
+    buttons[1].addEventListener("click", function () {
+      taskComplete(buttons[1]);
+      checkAllTasksCompleted();
+    });
+  }
+
+  // Task 3
+  if (buttons[2]) {
+    buttons[2].addEventListener("click", function () {
+      taskComplete(buttons[2]);
+      checkAllTasksCompleted();
+    });
+  }
+
+  // Task 4
+  if (buttons[3]) {
+    buttons[3].addEventListener("click", function () {
+      taskComplete(buttons[3]);
+      checkAllTasksCompleted();
+    });
+  }
+
+  // Task 5
+  if (buttons[4]) {
+    buttons[4].addEventListener("click", function () {
+      taskComplete(buttons[4]);
+      checkAllTasksCompleted();
+    });
+  }
+
+  // Task 6
+  if (buttons[5]) {
+    buttons[5].addEventListener("click", function () {
+      taskComplete(buttons[5]);
+      checkAllTasksCompleted();
+    });
+  }
+
+  // Task Descriptions (Loops used as per the prompt)
   let taskDescriptions = document.querySelectorAll(".task-desc");
 
   taskDescriptions.forEach((desc) => {
